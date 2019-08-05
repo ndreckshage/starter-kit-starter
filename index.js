@@ -6,11 +6,11 @@ const fs = require("fs");
 const starterKitStarter = ({
   kitDirectory,
   outputDirectory,
-  prompt = () => Promise.resolve(),
+  prompt = Promise.resolve({}),
   finalizeKit = identity => identity,
   dynamicExtension = ".kit"
 }) => {
-  prompt().then(answers => {
+  prompt.then(answers => {
     recursiveReaddir(kitDirectory, (err, files) => {
       const fileMap = {};
 
