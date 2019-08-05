@@ -1,6 +1,6 @@
 {
   "name": "starter-kit-starter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./index.js",
   "dependencies": {
     "mkdirp": "0.5.1",

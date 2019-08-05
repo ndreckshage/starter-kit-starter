@@ -28,7 +28,7 @@ const starterKitStarter = ({
         }
       });
 
-      const finalFiles = finalizeKit(fileMap);
+      const finalFiles = finalizeKit(fileMap, answers);
       Object.keys(finalFiles).forEach(adjustedRelativePath => {
         const finalPath = path.join(outputDirectory, adjustedRelativePath);
         mkdirp(path.dirname(finalPath), err => {
