@@ -13,7 +13,7 @@ declare function starterKitStarter({
 
 #### example!
 
-`create-starter-kit-starter-example` uses `starter-kit-starter` to create files with. See [repo](repo), and experiment with:
+`create-starter-kit-starter-example` uses `starter-kit-starter` to create files with. See [example repo](https://github.com/ndreckshage/starter-kit-starter), and experiment with:
 
 ```
 yarn create starter-kit-starter-example my-app
