@@ -22,7 +22,10 @@ const starterKitStarter = ({
         }
 
         if (path.extname(file) === dynamicExtension) {
-          fileMap[adjustedRelativePath] = require(file)(answers);
+          const fileOutput = require(file)(answers);
+          if (fileOutput) {
+            fileMap[adjustedRelativePath] = require(file)(answers);
+          }
         } else {
           fileMap[adjustedRelativePath] = fs.readFileSync(file, "utf8");
         }
