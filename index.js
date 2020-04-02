@@ -14,6 +14,10 @@ const starterKitStarter = ({
     recursiveReaddir(kitDirectory, (err, files) => {
       const fileMap = {};
 
+      if (!files) {
+        console.error(`No files found in ${kitDirectory}`);
+      }
+
       files.forEach(file => {
         const [, relativePath] = file.split(path.join(kitDirectory, path.sep));
         const adjustedRelativePath = relativePath.replace(dynamicExtension, "");
