@@ -8,7 +8,7 @@ declare function starterKitStarter({
   kitDirectory: string, // some magic in here!
   prompt: Promise<PromptResult>,
   finalizeKit: (FilepathsContentsMap, PromptResult) => FilepathsContentsMap
-}): void;
+}): Promise<void>;
 ```
 
 #### example!
