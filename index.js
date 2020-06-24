@@ -1,11 +1,7 @@
 const recursiveReaddir = require('recursive-readdir');
-const mkdirpCB = require('mkdirp');
 const path = require('path');
-const fs = require('fs');
-const util = require('util');
-
-const writeFile = util.promisify(fs.writeFile);
-const mkdirp = util.promisify(mkdirpCB);
+const fs = require('fs').promises;
+const {readFileSync} = require('fs');
 
 const starterKitStarter = ({
   kitDirectory,
@@ -31,7 +27,7 @@ const starterKitStarter = ({
             fileMap[adjustedRelativePath] = require(file)(answers);
           }
         } else {
-          fileMap[adjustedRelativePath] = fs.readFileSync(file, 'utf8');
+          fileMap[adjustedRelativePath] = readFileSync(file, 'utf8');
         }
       });
 
@@ -39,9 +35,10 @@ const starterKitStarter = ({
       return Promise.all(
         Object.keys(finalFiles).map(adjustedRelativePath => {
           const finalPath = path.join(outputDirectory, adjustedRelativePath);
-          return mkdirp(path.dirname(finalPath))
+          return fs
+            .mkdir(path.dirname(finalPath), {recursive: true})
             .then(() => {
-              return writeFile(finalPath, finalFiles[adjustedRelativePath]);
+              return fs.writeFile(finalPath, finalFiles[adjustedRelativePath]);
             })
             .catch(error => {
               console.error(error);
